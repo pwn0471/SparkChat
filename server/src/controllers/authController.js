@@ -1,6 +1,7 @@
 import bcrypt from "bcryptjs";
 import User from "../models/User.js"
 import jwt from "jsonwebtoken"
+import { upsertStreamUser } from "../lib/stream.js";
 
 export  async function signup(req,res){
     const {email, password, fullName}= req.body;
@@ -36,7 +37,18 @@ export  async function signup(req,res){
         })
 
         // todo creTE user in stream as well
+        try{
+            await upsertStreamUser({
+            id:newUser._id.toString(),
+            name:newUser.fullNmae,
+            image:newUser.profilePic || "",
+        });
+        console.log(`Stream user created for ${newUser.fullName}`);
 
+        }catch(error){
+            console.log("Error creating stream user:", error);
+        }
+        
         const token = jwt.sign({userId:newUser._id},process.env.JWT_SECRET_KEY,{
             expiresIn: "7d"
         })
@@ -55,11 +67,41 @@ export  async function signup(req,res){
         res.status(500).json({message:"Internal server error"});
     }
 }
+//login button 
 
 export async function login(req,res){
-    res.send("login route");
+    try{
+        const {email,password} = req.body;
+        if(!email || !password){
+            return res.status(400).json({message:"All fields are required "});
+        }
+
+        const user = await User.findOne({email});
+        if(!user) return res.status(401).json({message:"Invalid email or password "});
+
+        const isPasswordCorrect = await user.matchPassword(password)
+        if(!isPasswordCorrect) return res.status(401).json({message:"Invalid email or password "});
+        const token = jwt.sign({userId: user._id}, process.env.JWT_SECRET_KEY,{
+            expiresIn:"7d",
+        });
+        res.cookie("jwt", token,{
+            maxAge:7*24*60*100,
+            httpOnly:true,
+            sameSite:"strict",
+            secure:process.env.NODE_ENV === "production",
+
+
+        });
+        res.status(200).json({success:true, user});
+
+    }catch(error){
+        console.log("Error in login controller", error.message);
+        res.status(500).json({message:"Internal server error"});
+
+    }
 }
 
 export async function logout(req,res){
-    res.send("logout route");
+    res.clearCookie("jwt")
+    res.status(200).json({succes:true, message:"Logout successful"});
 }
