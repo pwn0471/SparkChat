@@ -116,3 +116,35 @@ export async function accpetFriendRequest(req,res){
     console.log("Error in acceptedFriendRequest controllers", error.message);
     res.status(500).json({message : "internal server error"});
 }
+
+export async function getMyFriendRequest(req,res){
+    try{
+        const incomingReq = await getMyFriendRequest(req,res)({
+            recipient: req.user.id,
+            status:"pending",
+        }).population("sender","fullName, profilePic, nativeLanguage");
+
+        const acceptedReqs = await FriendRequest.find({
+            sender:req.user.id,
+            status:"accpeted",
+        }).population("recipent","fullName, profilePic");
+
+        res.status(200).json({incomingReq,acceptedReqs});
+
+    }catch(error){
+        console.log("error in getfriendrequest in cntrollers");
+        res.status(500).json({message:"internal sever"});
+    }
+}
+
+export async function getOutgoingFriendReqs(req,res){
+    try{
+        const outgoingFriendReqs = await FriendRequest.find({
+            sender:req.user.id,
+            status:"pending",
+        }).population("recipent ", "fullName profilePic learningLanguage");
+    }catch(error){
+        console.log("Error in outgoingFriendreq in crontroller ", error.message);
+        res.status(500).json({message:"internal server error"});
+    }
+}
