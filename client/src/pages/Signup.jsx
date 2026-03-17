@@ -1,11 +1,10 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { useQueryClient, useMutation } from "@tanstack/react-query";
 
-import { signup } from "../lib/api";
+
 import Logo from "../components/logo"; 
 
-//import useSignUp from "../hooks/useSignUp";
+import useSignUp from "../hooks/useSignUp";
 
 const SignUpPage = () => {
   const [signupData, setSignupData] = useState({
@@ -15,18 +14,18 @@ const SignUpPage = () => {
   });
 
   // React Query mutation
-  const queryClient = useQueryClient();
+  // const queryClient = useQueryClient();
 
-  const {
-    mutate: signupMutation,
-    isPending,
-    error,
-  } = useMutation({
-    mutationFn: signup,
-    onSuccess: () => queryClient.invalidateQueries({ queryKey: ["authUser"] }),
-  });
+  // const {
+  //   mutate: signupMutation,
+  //   isPending,
+  //   error,
+  // } = useMutation({
+  //   mutationFn: signup,
+  //   onSuccess: () => queryClient.invalidateQueries({ queryKey: ["authUser"] }),
+  // });
 
-  //const { isPending, error, signupMutation } = useSignUp();
+  const { isPending, error, signupMutation } = useSignUp();
 
   const handleSignup = (e) => {
     e.preventDefault();
@@ -51,7 +50,7 @@ const SignUpPage = () => {
           {/* ERROR MESSAGE */}
           {error && (
             <div className="alert alert-error mb-4">
-              <span>{error?.response?.data?.message}</span>
+              <span>{error.response.data.message}</span>
             </div>
           )}
 

@@ -14,7 +14,8 @@ import { useEffect } from 'react';
 
 import PageLoader from './components/PageLoader.jsx';
 import useAuthUser from './hooks/useAuthUser.js';
-
+import  Layout  from './components/Layout.jsx';
+import { useThemeStore } from './store/useThemeStore.js';
 
 const App = () => {
   // axios
@@ -47,6 +48,7 @@ const App = () => {
   // react query transstack
 
   const {isLoading, authUser } = useAuthUser();
+  const {theme} = useThemeStore
 
   const isAuthenticated = Boolean(authUser);
   const isOnboarded = authUser?.isOnboarded;
@@ -55,17 +57,30 @@ const App = () => {
 
 
   return (
-    <div className=' h-screen' data-theme="coffee" >
+    <div className=' h-screen' data-theme={theme}>
       <Routes>
-        <Route path = "/" element = {
-          isAuthenticated && isOnboarded ? ( <HomePage/> 
-          ):( 
-          <Navigate to={!isAuthenticated ? "/login" : "/onboarding " }/>
-          ) 
-        }
+        <Route 
+          path = "/" 
+          element = {
+            isAuthenticated && isOnboarded ? ( 
+              <Layout showSidebar={true}>
+                <HomePage/>
+              </Layout> 
+            ):( 
+             <Navigate to={!isAuthenticated ? "/login" : "/onboarding " }/>
+            ) 
+          }
         />
-        <Route path = "/signup" element = {!isAuthenticated ? <SignUpPage/> : <Navigate to ="/" />} />
-        <Route path = "/login" element = {!isAuthenticated ? <LoginPage/> : <Navigate to = "/" />} />
+        <Route path = "/signup"
+          element = {
+            !isAuthenticated ? <SignUpPage/> : <Navigate to ={isOnboarded ? "/" : "/onboarding"} />
+          } 
+        />
+        <Route path = "/login" 
+          element = {
+            !isAuthenticated ? <LoginPage/> : <Navigate to = {isOnboarded ? "/" : "/onboarding"} />
+          } 
+        />
         <Route path = "/notification" element = {isAuthenticated ? <NotificationsPage/> : <Navigate to ="/login"/>} />
         <Route path = "/call" element = { isAuthenticated ? <CallPage/> : <Navigate to ="/login"/>} />
         <Route path = "/chat" element = { isAuthenticated ? <ChatPage/> : <Navigate to ="/login"/>} />
