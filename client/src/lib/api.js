@@ -23,11 +23,44 @@ export const getAuthUser = async()=>{
         console.log("Error in getAuthUser :", error);
         return null;
     }
-      const res = await axiosInstance.get("/auth/me");
-      return res.data;
+      
 }
 
 export const completeOnboarding = async (userData) =>{
-    const response = await axiosInstance.post("/auth/onboarding", userData);  // later it will be axiosInstance
+    const response = await axiosInstance.post("/auth/onboarding", userData);  e
     return response.data;
+}
+
+export async function getUserFriends(){
+    const response = await axiosInstance.get("/user/friends");
+    return response.data;
+
+}
+
+export async function getRecommendedUsers(){
+    const response = await axiosInstance.get("/user");
+    return response.data;
+    
+}
+export async function getOutgoingFriendReqs(){
+    const response = await axiosInstance.get("/user/outgoing-friend-requests");
+    return response.data;
+    
+}
+export async function sendFriendRequest(userId){
+    const response = await axiosInstance.get(`/user/friend-request/${userId}`);
+    return response.data;
+    
+}
+
+export async function getFriendRequests(){
+    const response = await axiosInstance.get("/user/friend-requests");
+    return response.data;
+    
+}
+
+export async function acceptFriendRequest(requestId){
+    const response = await axiosInstance.get(`/user/friend-requests/${requestId}/accept`);
+    return response.data;
+    
 }
