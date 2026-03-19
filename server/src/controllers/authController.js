@@ -39,8 +39,8 @@ export  async function signup(req,res){
         // todo creTE user in stream as well
         try{
             await upsertStreamUser({
-            id:newUser._id.toString(),
-            name:newUser.fullNmae,
+            id: newUser._id.toString(),
+            name:newUser.fullName,
             image:newUser.profilePic || "",
         });
         console.log(`Stream user created for ${newUser.fullName}`);
@@ -111,27 +111,30 @@ export async function onboard(req,res){
     try{
 
         const userId = req.user._id 
-        const {fullName, bio, nativeLanguage, location } = req.body;
+        const {fullName, bio, nativeLanguage,learningLanguage, location } = req.body;
 
-     if(!fullName || !bio || !nativeLanguage || !location){
+     if(!fullName || !bio || !nativeLanguage || !learningLanguage || !location){
         return res.status(400).json({
             message:"All fields are required",
             missingFileds:[
                 !fullName && "fullName",
                 !bio && "bio",
                 !nativeLanguage && "nativeLanguage",
+                !learningLanguage && "learningLanguage",
                 !location && "location",
             ].filter(Boolean),
         });
         
      }
 
-     const updateUser = await User.findByIdAndUpdate(userId,{
-        fullName,
-        bio,
-        nativeLanguage,
-        location,
-     },{new:true})
+     const updateUser = await User.findByIdAndUpdate(
+      userId,
+      {
+        ...req.body,
+        isOnboarded: true,
+      },
+      { new: true }
+    );
 
      if(!updateUser) return res.status(404).json({message:"User not found"})
      res.status(200).json({sucess:true, user:updateUser});

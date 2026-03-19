@@ -18,37 +18,12 @@ import  Layout  from './components/Layout.jsx';
 import { useThemeStore } from './store/useThemeStore.js';
 
 const App = () => {
-  // axios
-  // cosnt [data , setData] = useState([]);
-  // const [ isLoading, setIsLoading]= useState(false);
-  // const [error, setError] = useState(null);
-
-
-  // useEffect(()=>{
-  //   const getData = async ()=>{
-  //     setIsLoading(true);
-  //     try{
-  //       const data = await fetch ("https://jsonplaceholder.typicode.com/todos");
-  //       const json = await data.json();
-  //       setData(json);
-  //     }catch(error){
-  //       setError(error);
-  //     }finally{
-  //       setIsLoading(false);
-  //     }
-  //   };
-  //   getData();
-  // },[]);
-
-  // console.log(data);
-
-
-
+ 
   // instead of using axoios we use this for better expeience
   // react query transstack
 
   const {isLoading, authUser } = useAuthUser();
-  const {theme} = useThemeStore
+  const {theme} = useThemeStore();
 
   const isAuthenticated = Boolean(authUser);
   const isOnboarded = authUser?.isOnboarded;
@@ -119,17 +94,17 @@ const App = () => {
           }
         />
 
-        <Route 
-          path = "/onboarding" 
-          element = {
+         <Route
+          path="/onboarding"
+          element={
             isAuthenticated ? (
               !isOnboarded ? (
-               <OnboardingPage/> 
-              ):( 
-               <Navigate to ="/"/>
+                <OnboardingPage />
+              ) : (
+                <Navigate to="/" />
               )
-            ):(
-              <Navigate to = "/login"/>
+            ) : (
+              <Navigate to="/login" />
             )
           }
         />

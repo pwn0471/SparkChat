@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import Logo from "../components/logo"; 
 
 import useSignUp from "../hooks/useSignUp";
+import { signup } from "../lib/api";
 
 const SignUpPage = () => {
   const [signupData, setSignupData] = useState({
