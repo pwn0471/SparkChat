@@ -37,11 +37,11 @@ export  async function signup(req,res){
         })
 
         // todo creTE user in stream as well
-        try{
-            await upsertStreamUser({
-            id: newUser._id.toString(),
-            name:newUser.fullName,
-            image:newUser.profilePic || "",
+        try {
+          await upsertStreamUser({
+           id: newUser._id.toString(),
+           name: newUser.fullName,
+           image: newUser.profilePic || "",
         });
         console.log(`Stream user created for ${newUser.fullName}`);
 
@@ -139,11 +139,11 @@ export async function onboard(req,res){
      if(!updateUser) return res.status(404).json({message:"User not found"})
      res.status(200).json({sucess:true, user:updateUser});
 
-     try{
-        await upsertStreamUser({
-            id: updateUser._id.toString(),
-            name:updateUser.fullName,
-            image: updateUser.profilePic || "",
+      try {
+          await upsertStreamUser({
+           id: updateUser._id.toString(),
+           name: updateUser.fullName,
+           image: updateUser.profilePic || "",
         });
         console.log(`Stream user updated after onboarding for ${updateUser.fullName}`);
      }catch(streamError){

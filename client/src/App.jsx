@@ -7,7 +7,7 @@ import NotificationsPage from "./pages/Notification.jsx";
 import CallPage from "./pages/Call.jsx";
 import OnboardingPage from "./pages/Onboarding.jsx";
 import ChatPage from "./pages/Chat.jsx";
-
+import FriendPage from "./pages/Friends.jsx"
 import {Toaster} from "react-hot-toast";
 import { useEffect } from 'react';
 
@@ -94,7 +94,7 @@ const App = () => {
           }
         />
 
-         <Route
+        <Route
           path="/onboarding"
           element={
             isAuthenticated ? (
@@ -108,6 +108,21 @@ const App = () => {
             )
           }
         />
+
+        <Route
+          path="/friends"
+          element={
+            isAuthenticated && isOnboarded ? (
+              <Layout showSidebar={true}>
+              <FriendPage />
+              </Layout>
+            )   : (
+              <Navigate to={isAuthenticated ? "/onboarding" : "/login"} />
+            )
+          }
+        />
+
+       
       </Routes>
 
       < Toaster/>
