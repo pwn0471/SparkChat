@@ -19,8 +19,8 @@ const FriendCard = ({ friend }) => {
             Native: {friend.nativeLanguage}
           </span>
           <span className="badge badge-outline text-xs">
-            {getLanguageFlag(friend.learningLanguage)}
-            Learning: {friend.learningLanguage}
+            {getLanguageFlag(friend.origin)}
+            Origin: {friend.origin}
           </span>
         </div>
 
@@ -33,20 +33,26 @@ const FriendCard = ({ friend }) => {
 };
 export default FriendCard;
 
-export function getLanguageFlag(language) {
-  if (!language) return null;
+export function getLanguageFlag(value, type = "language") {
+  if (!value) return null;
 
-  const langLower = language.toLowerCase();
-  const countryCode = LANGUAGE_TO_FLAG[langLower];
+  let countryCode;
 
-  if (countryCode) {
-    return (
-      <img
-        src={`https://flagcdn.com/24x18/${countryCode}.png`}
-        alt={`${langLower} flag`}
-        className="h-3 mr-1 inline-block"
-      />
-    );
+  if (type === "language") {
+    const langLower = value.toLowerCase();
+    countryCode = LANGUAGE_TO_FLAG[langLower];
+  } else {
+    // for origin (already country code like "in", "us")
+    countryCode = value.toLowerCase();
   }
-  return null;
-}  
+
+  if (!countryCode) return null;
+
+  return (
+    <img
+      src={`https://flagcdn.com/24x18/${countryCode}.png`}
+      alt="flag"
+      className="h-3 mr-1 inline-block"
+    />
+  );
+}

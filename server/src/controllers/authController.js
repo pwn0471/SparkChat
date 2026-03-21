@@ -2,6 +2,7 @@ import bcrypt from "bcryptjs";
 import User from "../models/User.js"
 import jwt from "jsonwebtoken"
 import { upsertStreamUser } from "../lib/stream.js";
+import { sendWelcomeEmail } from "../lib/sendEmail.js";
 
 export  async function signup(req,res){
     const {email, password, fullName}= req.body;
@@ -35,6 +36,8 @@ export  async function signup(req,res){
             profilePic: randomAvatar,
 
         })
+
+        await sendWelcomeEmail(newUser.email, newUser.fullName);
 
         // todo creTE user in stream as well
         try {
@@ -111,16 +114,16 @@ export async function onboard(req,res){
     try{
 
         const userId = req.user._id 
-        const {fullName, bio, nativeLanguage,learningLanguage, location } = req.body;
+        const {fullName, bio, nativeLanguage,origin, location } = req.body;
 
-     if(!fullName || !bio || !nativeLanguage || !learningLanguage || !location){
+     if(!fullName || !bio || !nativeLanguage || !origin || !location){
         return res.status(400).json({
             message:"All fields are required",
             missingFileds:[
                 !fullName && "fullName",
                 !bio && "bio",
                 !nativeLanguage && "nativeLanguage",
-                !learningLanguage && "learningLanguage",
+                !origin && "origin",
                 !location && "location",
             ].filter(Boolean),
         });

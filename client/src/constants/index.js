@@ -178,6 +178,22 @@ export const LANGUAGES = [
   "Turkish",
   "Dutch",
 ];
+export const origin = [
+  "England",
+  "Spain",
+  "France",
+  "Germany",
+  
+  "Japan",
+  "Korea",
+  "India",
+  "Russia",
+  "Portugal",
+  "Arab",
+  "Italy",
+  "Turkey",
+  
+];
 
 export const LANGUAGE_TO_FLAG = {
   english: "gb",
@@ -195,3 +211,4 @@ export const LANGUAGE_TO_FLAG = {
   turkish: "tr",
   dutch: "nl",
 };
+

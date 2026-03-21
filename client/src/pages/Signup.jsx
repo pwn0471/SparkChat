@@ -78,7 +78,7 @@ const SignUpPage = () => {
 
                     <input
                       type="text"
-                      placeholder="John Doe"
+                      placeholder="Enter your name"
                       className="input input-bordered w-full"
                       value={signupData.fullName}
                       onChange={(e) =>
@@ -99,7 +99,7 @@ const SignUpPage = () => {
 
                     <input
                       type="email"
-                      placeholder="john@gmail.com"
+                      placeholder="Enter your Gmail"
                       className="input input-bordered w-full"
                       value={signupData.email}
                       onChange={(e) =>
@@ -115,12 +115,12 @@ const SignUpPage = () => {
                   {/* PASSWORD */}
                   <div className="form-control w-full">
                     <label className="label">
-                      <span className="label-text">Password</span>
+                      <span className="label-text">Create Password</span>
                     </label>
 
                     <input
                       type="password"
-                      placeholder="********"
+                      placeholder="Create your password"
                       className="input input-bordered w-full"
                       value={signupData.password}
                       onChange={(e) =>

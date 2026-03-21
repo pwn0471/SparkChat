@@ -77,9 +77,9 @@ const HomePage = () => {
           <div className="mb-6 sm:mb-8">
             <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
               <div>
-                <h2 className="text-2xl sm:text-3xl font-bold tracking-tight">Meet New Learners</h2>
+                <h2 className="text-2xl sm:text-3xl font-bold tracking-tight">Connect with New People</h2>
                 <p className="opacity-70">
-                  Discover perfect language exchange partners based on your profile
+                  Discover people who match your interests and vibe
                 </p>
               </div>
             </div>
@@ -93,7 +93,7 @@ const HomePage = () => {
             <div className="card bg-base-200 p-6 text-center">
               <h3 className="font-semibold text-lg mb-2">No recommendations available</h3>
               <p className="text-base-content opacity-70">
-                Check back later for new language partners!
+                Check back later for new  partners!
               </p>
             </div>
           ) : (
@@ -130,8 +130,8 @@ const HomePage = () => {
                           Native: {capitialize(user.nativeLanguage)}
                         </span>
                         <span className="badge badge-outline">
-                          {getLanguageFlag(user.learningLanguage)}
-                          Learning: {capitialize(user.learningLanguage)}
+                          {getLanguageFlag(user.origin)}
+                          Origin: {capitialize(user.origin)}
                         </span>
                       </div>
 

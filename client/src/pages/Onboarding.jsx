@@ -4,7 +4,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import { completeOnboarding } from "../lib/api";
 import { LoaderIcon, MapPinIcon, ShipWheelIcon, ShuffleIcon } from "lucide-react";
-import { LANGUAGES } from "../constants";
+import { LANGUAGES,origin } from "../constants";
 
 const OnboardingPage = () => {
   const { authUser } = useAuthUser();
@@ -14,7 +14,7 @@ const OnboardingPage = () => {
     fullName: authUser?.fullName || "",
     bio: authUser?.bio || "",
     nativeLanguage: authUser?.nativeLanguage || "",
-    learningLanguage: authUser?.learningLanguage || "",
+    origin: authUser?.origin || "",
     location: authUser?.location || "",
     profilePic: authUser?.profilePic || "",
   });
@@ -134,20 +134,23 @@ const OnboardingPage = () => {
               {/* LEARNING LANGUAGE */}
               <div className="form-control">
                 <label className="label">
-                  <span className="label-text">Learning Language</span>
+                  <span className="label-text">Country</span>
                 </label>
                 <select
-                  name="learningLanguage"
-                  value={formState.learningLanguage}
-                  onChange={(e) => setFormState({ ...formState, learningLanguage: e.target.value })}
-                  className="select select-bordered w-full"
+                  name="origin"
+                  value={formState.origin}
+                  onChange={(e) =>
+                    setFormState({ ...formState, origin: e.target.value })
+                  }
+                    className="select select-bordered w-full"
                 >
-                  <option value="">Select language you're learning</option>
-                  {LANGUAGES.map((lang) => (
-                    <option key={`learning-${lang}`} value={lang.toLowerCase()}>
-                      {lang}
-                    </option>
-                  ))}
+                    <option value="">Select your country</option>
+
+                    {origin.map((country) => (
+                      <option key={country.code} value={country.code}>
+                        {country.name}
+                        </option>
+                    ))}
                 </select>
               </div>
             </div>

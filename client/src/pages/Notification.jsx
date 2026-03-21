@@ -60,7 +60,7 @@ const NotificationsPage = () => {
                                   Native: {request.sender.nativeLanguage}
                                 </span>
                                 <span className="badge badge-outline badge-sm">
-                                  Learning: {request.sender.learningLanguage}
+                                  origin: {request.sender.origin}
                                 </span>
                               </div>
                             </div>

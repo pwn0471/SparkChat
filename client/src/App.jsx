@@ -8,6 +8,7 @@ import CallPage from "./pages/Call.jsx";
 import OnboardingPage from "./pages/Onboarding.jsx";
 import ChatPage from "./pages/Chat.jsx";
 import FriendPage from "./pages/Friends.jsx"
+import AboutPage from "./pages/About.jsx"
 import {Toaster} from "react-hot-toast";
 import { useEffect } from 'react';
 
@@ -85,7 +86,7 @@ const App = () => {
           path="/chat/:id"
           element={
             isAuthenticated && isOnboarded ? (
-              <Layout showSidebar={false}>
+              <Layout showSidebar={true}>
                 <ChatPage />
               </Layout>
             ) : (
@@ -118,6 +119,19 @@ const App = () => {
               </Layout>
             )   : (
               <Navigate to={isAuthenticated ? "/onboarding" : "/login"} />
+            )
+          }
+        />
+
+        <Route
+          path="/about"
+          element={
+            isAuthenticated && isOnboarded ? (
+             <Layout showSidebar={true}>
+             <AboutPage />
+             </Layout>
+            ) : (
+             <Navigate to={isAuthenticated ? "/onboarding" : "/login"} />
             )
           }
         />
