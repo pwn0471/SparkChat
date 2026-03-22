@@ -105,7 +105,7 @@ const OnboardingPage = () => {
                 value={formState.bio}
                 onChange={(e) => setFormState({ ...formState, bio: e.target.value })}
                 className="textarea textarea-bordered h-24"
-                placeholder="Tell others about yourself and your language learning goals"
+                placeholder="Tell others about yourself "
               />
             </div>
 
@@ -131,27 +131,28 @@ const OnboardingPage = () => {
                 </select>
               </div>
 
-              {/* LEARNING LANGUAGE */}
-              <div className="form-control">
+              {/* origin */}
+             <div className="form-control">
                 <label className="label">
                   <span className="label-text">Country</span>
                 </label>
-                <select
-                  name="origin"
-                  value={formState.origin}
-                  onChange={(e) =>
-                    setFormState({ ...formState, origin: e.target.value })
-                  }
-                    className="select select-bordered w-full"
-                >
+
+                 <select
+                   name="origin"
+                   value={formState.origin}
+                   onChange={(e) =>
+                     setFormState({ ...formState, origin: e.target.value })
+                   }
+                      className="select select-bordered w-full"
+                  >
                     <option value="">Select your country</option>
 
-                    {origin.map((country) => (
-                      <option key={country.code} value={country.code}>
-                        {country.name}
-                        </option>
-                    ))}
-                </select>
+                   {origin.map((country) => (
+                    <option key={country} value={country}>
+                  {country}
+                  </option>
+                  ))}
+                  </select>
               </div>
             </div>
 
