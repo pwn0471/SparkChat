@@ -143,4 +143,4 @@ It allows users to **discover, connect, chat, and video call** securely in a sin
 ---
 
 ## 👨‍💻 Author
-**Pawan Kumar**
+**Pawan Kumar** - MERN Developer
