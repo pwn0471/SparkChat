@@ -10,7 +10,7 @@ const About = () => {
           <Logo />
         </div>
         <h1 className="text-3xl md:text-4xl font-bold">
-          About BindaasTalk
+          About SparkChat
         </h1>
         <p className="opacity-70 mt-2 max-w-xl mx-auto">
           Connect, chat, and build real conversations with people around the world.
@@ -45,7 +45,7 @@ const About = () => {
       <div className="text-center max-w-2xl mx-auto mb-12">
         <h2 className="text-2xl font-semibold mb-3">Our Mission</h2>
         <p className="opacity-70">
-          At BindaasTalk, we aim to make communication simple, fun, and accessible.
+          At SparkChat, we aim to make communication simple, fun, and accessible.
           Whether it's chatting or video calling, we help people stay connected anytime, anywhere.
         </p>
       </div>

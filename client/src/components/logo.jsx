@@ -12,8 +12,8 @@ const Logo = ({ size = 80, textSize = "text-3xl" }) => {
 
       {/* Logo Text */}
       <h1 className={`${textSize} font-extrabold font-mono tracking-wide`}>
-        <span className="text-orange-300">Bindaas</span>
-        <span className="text-white">Talk</span>
+        <span className="text-orange-300">Spark</span>
+        <span className="text-white">Chat</span>
       </h1>
 
     </div>

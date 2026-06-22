@@ -64,7 +64,7 @@ const SignUpPage = () => {
                     Create an Account
                   </h2>
                   <p className="text-sm opacity-70">
-                    Join BindaasTalk and experience seamless real-time chat and video conversations.
+                    Join SparkChat and experience seamless real-time chat and video conversations.
                   </p>
                 </div>
 

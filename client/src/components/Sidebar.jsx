@@ -30,8 +30,8 @@ const Sidebar = () => {
         <Link to="/" className="flex items-center gap-2" onClick={() => setIsOpen(false)}>
           <img src="/logo.png" alt="logo" className="w-14 h-14" />
           <span className="text-xl font-bold">
-            <span className="text-orange-500">Bindaas</span>
-            <span className="text-white">Talk</span>
+            <span className="text-orange-500">Spark</span>
+            <span className="text-white">Chat</span>
           </span>
         </Link>
         {/* Close button - mobile only */}
