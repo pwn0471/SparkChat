@@ -1,6 +1,6 @@
-# 🎙️ BindaasTalk – Real-Time Video Chat & Social Connection App
+# 🎙️ SparkChat – Real-Time Video Chat & Social Connection App
 
-BindaasTalk is a modern **MERN-stack video chat and social networking app** designed for people who want to connect, communicate, and build real conversations.  
+SparkChat is a modern **MERN-stack video chat and social networking app** designed for people who want to connect, communicate, and build real conversations.  
 It allows users to discover new people, send friend requests, chat in real-time, and make HD video calls — all in one beautifully designed platform.
 
 ---
@@ -128,7 +128,7 @@ Used for:
 
 ## 🚀 Project Summary
 
-**BindaasTalk** is a complete **MERN-stack application** that combines real-time video calling, instant messaging, and a social friend system.  
+**SparkChat** is a complete **MERN-stack application** that combines real-time video calling, instant messaging, and a social friend system.  
 It allows users to **discover, connect, chat, and video call** securely in a single, beautifully designed platform.
 
 ---
