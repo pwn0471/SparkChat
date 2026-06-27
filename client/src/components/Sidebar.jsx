@@ -45,7 +45,7 @@ const Sidebar = () => {
 
       {/* 🚀 NAVIGATION */}
       <nav className="flex-1 p-4 space-y-2">
-        <Link to="/" className={navItem("/")} onClick={() => setIsOpen(false)}>
+        <Link to="/home" className={navItem("/home")} onClick={() => setIsOpen(false)}>
           <HomeIcon className="size-5" />
           <span>Home</span>
         </Link>

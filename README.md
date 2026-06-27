@@ -24,6 +24,9 @@ Users can:
 
 ## 🖼️ Screenshots
 
+## Landing Page
+![Landing](client/public/screenshots/landing.png)
+
 ### 🏠 Home Page
 ![Home](client/public/screenshots/home.png)
 

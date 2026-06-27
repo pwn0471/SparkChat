@@ -9,9 +9,11 @@ import OnboardingPage from "./pages/Onboarding.jsx";
 import ChatPage from "./pages/Chat.jsx";
 import FriendPage from "./pages/Friends.jsx"
 import AboutPage from "./pages/About.jsx"
+
 import {Toaster} from "react-hot-toast";
 import { useEffect } from 'react';
 
+import LandingPage from "./pages/Landing.jsx"
 
 import PageLoader from './components/PageLoader.jsx';
 import useAuthUser from './hooks/useAuthUser.js';
@@ -35,26 +37,30 @@ const App = () => {
   return (
     <div className=' h-screen' data-theme={theme}>
       <Routes>
+        <Route
+          path="/"
+          element={<LandingPage />}
+        />
         <Route 
-          path = "/" 
+          path = "/home" 
           element = {
             isAuthenticated && isOnboarded ? ( 
               <Layout showSidebar={true}>
                 <HomePage/>
               </Layout> 
             ):( 
-             <Navigate to={!isAuthenticated ? "/login" : "/onboarding " }/>
+             <Navigate to={!isAuthenticated ? "/" : "/onboarding" }/>
             ) 
           }
         />
         <Route path = "/signup"
           element = {
-            !isAuthenticated ? <SignUpPage/> : <Navigate to ={isOnboarded ? "/" : "/onboarding"} />
+            !isAuthenticated ? <SignUpPage/> : <Navigate to ={isOnboarded ? "/home" : "/onboarding"} />
           } 
         />
         <Route path = "/login" 
           element = {
-            !isAuthenticated ? <LoginPage/> : <Navigate to = {isOnboarded ? "/" : "/onboarding"} />
+            !isAuthenticated ? <LoginPage/> : <Navigate to = {isOnboarded ? "/home" : "/onboarding"} />
           } 
         />
 
@@ -66,7 +72,7 @@ const App = () => {
                 <NotificationsPage />
               </Layout>
             ) : (
-              <Navigate to={!isAuthenticated ? "/login" : "/onboarding"} />
+              <Navigate to={!isAuthenticated ? "/" : "/onboarding"} />
             )
           }
         />
@@ -77,7 +83,7 @@ const App = () => {
             isAuthenticated && isOnboarded ? (
               <CallPage />
             ) : (
-              <Navigate to={!isAuthenticated ? "/login" : "/onboarding"} />
+              <Navigate to={!isAuthenticated ? "/" : "/onboarding"} />
             )
           }
         />
@@ -90,7 +96,7 @@ const App = () => {
                 <ChatPage />
               </Layout>
             ) : (
-              <Navigate to={!isAuthenticated ? "/login" : "/onboarding"} />
+              <Navigate to={!isAuthenticated ? "/" : "/onboarding"} />
             )
           }
         />
@@ -102,10 +108,10 @@ const App = () => {
               !isOnboarded ? (
                 <OnboardingPage />
               ) : (
-                <Navigate to="/" />
+                <Navigate to="/home" />
               )
             ) : (
-              <Navigate to="/login" />
+              <Navigate to="/" />
             )
           }
         />
@@ -118,7 +124,7 @@ const App = () => {
               <FriendPage />
               </Layout>
             )   : (
-              <Navigate to={isAuthenticated ? "/onboarding" : "/login"} />
+              <Navigate to={isAuthenticated ? "/onboarding" : "/"} />
             )
           }
         />
@@ -131,7 +137,7 @@ const App = () => {
              <AboutPage />
              </Layout>
             ) : (
-             <Navigate to={isAuthenticated ? "/onboarding" : "/login"} />
+             <Navigate to={isAuthenticated ? "/onboarding" : "/"} />
             )
           }
         />
